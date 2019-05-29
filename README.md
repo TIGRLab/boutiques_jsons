@@ -1,5 +1,5 @@
 # boutiques_jsons
-Our descriptor and invocation jsons for our pipelines. 
+Our descriptor and invocation jsons for our pipelines. Ask Gabi if you have questions, feel free to fix Gabi's mistakes.
 
 filenames with an `_in` suffix are the invocation/input jsons.
 
