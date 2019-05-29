@@ -1,0 +1,6 @@
+{
+		"bids_dir":"/bids/",
+		"analysis_level":"participant",
+		"output_dir":"/ciftify_output/",
+		"freesurfer_license":"/dm_boutiques/license.txt"
+}
