@@ -1,5 +1,5 @@
 {
-    "author": "Plodrack lab",
+    "author": "Poldrack lab",
     "command-line": "mriqc [BIDS_DIR] [OUTPUT_DIR] [ANALYSIS_LEVEL] [VERSION] [PARTICIPANT_LABEL] [SESSION_ID] [RUN_ID] [TASK_ID] [MODALITIES] [DSNAME] [WORK_DIR] [VERBOSE_REPORTS] [WRITE_GRAPH] [DRY_RUN] [PROFILE] [USE_PLUGIN] [NO_SUB] [EMAIL] [VERBOSE_COUNT] [WEBAPI_URL] [WEBAPI_PORT] [UPLOAD_STRICT] [N_PROCS] [MEM_GB] [TESTING] [FLOAT32] [ICA] [HMC_AFNI] [HMC_FSL] [FFT_SPIKES_DETECTOR] [FD_THRES] [ANTS_NTHREADS] [ANTS_FLOAT] [ANTS_SETTINGS] [DEOBLIQUE] [DESPIKE] [START_IDX] [STOP_IDX] [CORRECT_SLICE_TIMING]",
     "container-image": {
         "image": "shots47s/cbrain-plugins-mriqc",
@@ -621,3 +621,4 @@
     "tool-version": "v0.14.2",
     "url": "https://mriqc.readthedocs.io/en/0.14.2"
 }
+
