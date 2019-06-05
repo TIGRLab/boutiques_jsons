@@ -389,7 +389,7 @@
         },
         {
             "command-line-flag": "--fs-no-reconall",
-            "default-value": true,
+            "default-value": false,
             "description": "disable FreeSurfer surface preprocessing. Note : `--no-freesurfer` is deprecated and will be removed in 1.2. Use `--fs-no-reconall` instead.",
             "id": "run_reconall",
             "name": "run_reconall",
@@ -527,7 +527,8 @@
                         "fieldmaps",
                         "slicetiming",
                         "sbref"
-                    ]
+                    ],
+		    "type":"string"
                 },
                 "type": "array"
             },
