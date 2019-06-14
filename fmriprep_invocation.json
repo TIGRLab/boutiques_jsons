@@ -7,5 +7,6 @@
 	"omp_nthreads":2,
 	"use_syn_sdc":true,
 	"verbosity":"-vv",
-	"use_aroma":true
+	"use_aroma":true,
+	"low_mem":true
 }
