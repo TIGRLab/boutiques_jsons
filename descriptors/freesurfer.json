@@ -468,7 +468,7 @@
     "output-files": [
         {
             "description": "This is the directory where the overall outputs are to be stored.",
-            "id": "output_directory",
+            "id": "req_output_directory",
             "name": "Output Directory",
             "optional": false,
             "path-template": "[OUTPUT_DIR]/freesurfer/[PARTICIPANT_LABEL]"
