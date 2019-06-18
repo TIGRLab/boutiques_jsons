@@ -5,7 +5,6 @@
 	"analysis_level": "participant",
 	"n_cpus": 2,
 	"license_file": "/license/license.txt",
-	"steps": ["cross-sectional"],
 	"skip_bids_validator":true
 
 }	

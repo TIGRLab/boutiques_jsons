@@ -661,6 +661,30 @@
         "type": "object"
     },
     "name": "BIDS App - fmriprep",
+    "output-files": [
+        {
+            "description": "This is the directory where the overall outputs are to be stored.",
+            "id": "output_directory",
+            "name": "Output Directory",
+            "optional": false,
+            "path-template": "[OUTPUT_DIR]/fmriprep/sub-[PARTICIPANT_LABEL]"
+        },
+	{
+		"description": "Check for existence of the fmriprep html report file",
+		"id": "html_report",
+		"name": "FMRIPREP HTML report file",
+		"optional": false,
+		"path-template": "[OUTPUT_DIR]/fmriprep/sub-[PARTICIPANT_LABEL].html"
+	},
+	{
+		"description": "Structural preprocessed outputs of FMRIPREP",
+		"id": "struct_out",
+		"name": "FMRIPREP structural preprocessed",
+		"optional":false,
+		"path-template":"[OUTPUT_DIR]/fmriprep/sub-[PARTICIPANT_LABEL]/anat/*preproc_T1w.nii.gz"
+	}
+
+    ],
     "schema-version": "0.5",
     "tags": {
         "application-type": [

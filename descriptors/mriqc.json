@@ -600,8 +600,16 @@
             "id": "output_directory",
             "name": "Output Directory",
             "optional": false,
-            "path-template": "[OUTPUT_DIR]"
-        }
+            "path-template": "[OUTPUT_DIR]/[PARTICIPANT_LABEL]"
+        },
+	{
+		"description": "Check for existence of the html file",
+		"id": "html_report",
+		"name": "MRIQC HTML report file",
+		"optional": false,
+		"path-template": "[OUTPUT_DIR]/[PARTICIPANT_LABEL].html"
+	}
+
     ],
     "schema-version": "0.5",
     "suggested-resources": {
