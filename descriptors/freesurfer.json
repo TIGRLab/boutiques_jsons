@@ -471,7 +471,7 @@
             "id": "req_output_directory",
             "name": "Output Directory",
             "optional": false,
-            "path-template": "[OUTPUT_DIR]/freesurfer/[PARTICIPANT_LABEL]"
+            "path-template": "[OUTPUT_DIR]/freesurfer/sub-[PARTICIPANT_LABEL]"
         }
     ],
     "schema-version": "0.5", 
