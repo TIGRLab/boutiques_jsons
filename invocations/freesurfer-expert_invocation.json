@@ -3,9 +3,9 @@
 	"bids_dir" : "/bids",
 	"output_dir": "/output",
 	"analysis_level": "participant",
-	"n_cpus": 4,
+	"n_cpus": 2,
 	"license_file": "/license/license.txt",
-	"multiple_sessions":"longitudinal",
-	"skip_bids_validator":true
+	"skip_bids_validator":true,
+	"expert": "/output/expert.opts"
 
 }	
