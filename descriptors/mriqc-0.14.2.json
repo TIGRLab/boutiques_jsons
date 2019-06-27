@@ -105,7 +105,6 @@
         },
         {
             "command-line-flag": "--version",
-            "default-value": false,
             "description": "show program's version number and exit",
             "id": "version",
             "name": "version",
@@ -205,7 +204,6 @@
         },
         {
             "command-line-flag": "--dry-run",
-            "default-value": false,
             "description": "Do not run the workflow.",
             "id": "dry_run",
             "name": "dry_run",
@@ -215,7 +213,6 @@
         },
         {
             "command-line-flag": "--profile",
-            "default-value": false,
             "description": "hook up the resource profiler callback to nipype",
             "id": "profile",
             "name": "profile",
@@ -234,7 +231,6 @@
         },
         {
             "command-line-flag": "--no-sub",
-            "default-value": false,
             "description": "Turn off submission of anonymized quality metrics to MRIQC's metrics repository.",
             "id": "no_sub",
             "name": "no_sub",
