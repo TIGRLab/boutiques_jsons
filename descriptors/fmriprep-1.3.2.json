@@ -1,6 +1,6 @@
 {
     "author": "Poldrack lab",
-    "command-line": "fmriprep [BIDS_DIR] [OUTPUT_DIR] [ANALYSIS_LEVEL] [VERSION] [PARTICIPANT_LABEL] [TASK_ID] [NTHREADS] [OMP_NTHREADS] [MEM_MB] [LOW_MEM] [USE_PLUGIN] [ANAT_ONLY] [BOILERPLATE] [IGNORE_AROMA_DENOISING_ERRORS] [VERBOSITY] [DEBUG] [IGNORE] [LONGITUDINAL] [T2S_COREG] [BOLD2T1W_DOF] [OUTPUT_SPACE] [USE_BBR] [TEMPLATE] [OUTPUT_GRID_REFERENCE] [TEMPLATE_RESAMPLING_GRID] [MEDIAL_SURFACE_NAN] [USE_AROMA] [AROMA_MELODIC_DIMENSIONALITY] [SKULL_STRIP_TEMPLATE] [SKULL_STRIP_FIXED_SEED] [FMAP_BSPLINE] [FMAP_NO_DEMEAN] [USE_SYN_SDC] [FORCE_SYN] [FS_LICENSE_FILE] [HIRES] [CIFTI_OUTPUT] [RUN_RECONALL] [WORK_DIR] [RESOURCE_MONITOR] [REPORTS_ONLY] [RUN_UUID] [WRITE_GRAPH] [STOP_ON_FIRST_CRASH] [NOTRACK] [SLOPPY]",
+    "command-line": "fmriprep [BIDS_DIR] [OUTPUT_DIR] [ANALYSIS_LEVEL] [VERSION] [PARTICIPANT_LABEL] [TASK_ID] [NTHREADS] [OMP_NTHREADS] [MEM_MB] [LOW_MEM] [USE_PLUGIN] [ANAT_ONLY] [BOILERPLATE] [IGNORE_AROMA_DENOISING_ERRORS] [VERBOSITY] [DEBUG] [IGNORE] [LONGITUDINAL] [T2S_COREG] [BOLD2T1W_DOF] [OUTPUT_SPACE] [USE_BBR] [TEMPLATE] [OUTPUT_GRID_REFERENCE] [TEMPLATE_RESAMPLING_GRID] [MEDIAL_SURFACE_NAN] [USE_AROMA] [AROMA_MELODIC_DIMENSIONALITY] [SKULL_STRIP_TEMPLATE] [SKULL_STRIP_FIXED_SEED] [FMAP_BSPLINE] [FMAP_NO_DEMEAN] [USE_SYN_SDC] [FORCE_SYN] [FS_LICENSE_FILE] [HIRES] [CIFTI_OUTPUT] [NO_RUN_RECONALL] [WORK_DIR] [RESOURCE_MONITOR] [REPORTS_ONLY] [RUN_UUID] [WRITE_GRAPH] [STOP_ON_FIRST_CRASH] [NOTRACK] [SLOPPY]",
     "container-image": {
         "image": "poldracklab/fmriprep:1.2.3",
         "type": "singularity"
@@ -391,11 +391,11 @@
             "command-line-flag": "--fs-no-reconall",
             "default-value": false,
             "description": "disable FreeSurfer surface preprocessing. Note : `--no-freesurfer` is deprecated and will be removed in 1.2. Use `--fs-no-reconall` instead.",
-            "id": "run_reconall",
-            "name": "run_reconall",
+            "id": "no_run_reconall",
+            "name": "no_run_reconall",
             "optional": true,
             "type": "Flag",
-            "value-key": "[RUN_RECONALL]"
+            "value-key": "[NO_RUN_RECONALL]"
         },
         {
             "command-line-flag": "-w",
@@ -587,7 +587,7 @@
             "resource_monitor": {
                 "type": "boolean"
             },
-            "run_reconall": {
+            "no_run_reconall": {
                 "type": "boolean"
             },
             "run_uuid": {
