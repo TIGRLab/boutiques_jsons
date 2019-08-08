@@ -36,7 +36,6 @@
         },
         {
             "command-line-flag": "--version",
-            "default-value": false,
             "description": "show program's version number and exit",
             "id": "version",
             "name": "version",
@@ -389,7 +388,6 @@
         },
         {
             "command-line-flag": "--fs-no-reconall",
-            "default-value": false,
             "description": "disable FreeSurfer surface preprocessing. Note : `--no-freesurfer` is deprecated and will be removed in 1.2. Use `--fs-no-reconall` instead.",
             "id": "no_run_reconall",
             "name": "no_run_reconall",
