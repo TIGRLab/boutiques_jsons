@@ -1,0 +1,5 @@
+{
+	"bids_dir":"/bids",
+	"output_dir":"/output",
+	"analysis_level":"participant"
+}
