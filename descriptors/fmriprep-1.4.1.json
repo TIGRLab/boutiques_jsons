@@ -3,7 +3,6 @@
     "name" : "fmriprep (BIDS app)",
     "tool-version" : "1.4.1",
     "description" : "fmriprep is a functional magnetic resonance imaging (fMRI) data preprocessing pipeline that is designed to provide an easily accessible, state-of-the-art interface that is robust to variations in scan acquisition protocols and that requires minimal user input, while providing easily interpretable and comprehensive error and output reporting. https://fmriprep.readthedocs.io/en/1.4.1/",
-    "command-line" : "mkdir -p [OUTPUT_DIR]; /usr/local/miniconda/bin/fmriprep [BIDS_DIR] [OUTPUT_DIR] [ANALYSIS_LEVEL] [PARTICIPANT_LABEL] [SESSION_LABEL]",
     "container-image": {
         "type": "singularity",
         "image": "poldracklab/fmriprep:1.4.1"
