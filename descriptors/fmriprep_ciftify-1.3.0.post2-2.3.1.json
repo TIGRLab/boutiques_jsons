@@ -198,7 +198,7 @@
         {
             "command-line-flag": "--resample-to-T1w32k",
             "description": "Output additional surfaces in fsLR32k Individual (T1w) Space",
-            "id": "resameple_to_T1w32k",
+            "id": "resample_to_T1w32k",
             "name": "Output T1w32k",
             "optional": true,
             "type": "Flag",
@@ -417,7 +417,7 @@
             "rerun_if_complete": {
                 "type": "boolean"
             },
-            "resameple_to_T1w32k": {
+            "resample_to_T1w32k": {
                 "type": "boolean"
             },
             "session_label": {
