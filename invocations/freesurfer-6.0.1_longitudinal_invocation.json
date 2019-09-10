@@ -1,0 +1,12 @@
+{
+
+	"bids_dir" : "/bids",
+	"output_dir": "/output",
+	"analysis_level": "participant",
+	"n_cpus": 2,
+        "steps": ["cross-sectional", "template", "longitudinal"],
+        "multiple_sessions": "longitudinal",
+	"license_file": "/license/license.txt",
+	"skip_bids_validator": true
+
+}	
