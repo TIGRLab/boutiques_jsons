@@ -3,5 +3,6 @@
 	"output_dir": "/output",
 	"analysis_level": "participant",
 	"license_key": "/license/license.txt",
-	"n_cpus":4
+	"n_cpus":4,
+	"stages":["PreFreeSurfer","FreeSurfer","PostFreeSurfer"]
 }
