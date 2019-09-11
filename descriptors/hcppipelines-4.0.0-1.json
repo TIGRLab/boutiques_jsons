@@ -98,13 +98,13 @@
             "value-key": "[LICENSE_KEY]"
         },
 	{
-		"stages": "--stages",
+		"command-line-flag": "--stages",
 		"description":"Which stages of HCPPipelines to run",
+		"list":true,
 		"id": "stages",
 		"name": "stages",
 		"optional": true,
 		"type": "String",
-		"list":"true,
 		"value-choices": [
 			"PreFreeSurfer",
 			"FreeSurfer",
@@ -155,7 +155,14 @@
 	    },
 	    "stages":{
 		    "items":{
-			    "type":"string"
+			    "enum": [
+				"PreFreeSurfer",
+				"FreeSurfer",
+				"PostFreeSurfer",
+				"fMRIVolume",
+				"fMRISurface",
+				"DiffusionPreprocessing"
+			    ]
 		    },
 		    "type":"array"
 	    }
