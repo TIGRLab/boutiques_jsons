@@ -96,7 +96,27 @@
             "type": "File",
             "uses-absolute-path": true,
             "value-key": "[LICENSE_KEY]"
-        }
+        },
+	{
+		"stages": "--stages",
+		"description":"Which stages of HCPPipelines to run",
+		"id": "stages",
+		"name": "stages",
+		"optional": true,
+		"type": "String",
+		"list":"true,
+		"value-choices": [
+			"PreFreeSurfer",
+			"FreeSurfer",
+			"PostFreeSurfer",
+			"fMRIVolume",
+			"fMRISurface",
+			"DiffusionPreprocessing"
+		],
+		"value-key":"[STAGES]"
+
+	}
+
     ],
     "invocation-schema": {
         "$schema": "http://json-schema.org/draft-04/schema#",
