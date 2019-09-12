@@ -49,7 +49,6 @@
         },
         {
             "command-line-flag": "--version",
-            "default-value": false,
             "description": "show program's version number and exit",
             "id": "version",
             "name": "version",
@@ -59,7 +58,6 @@
         },
         {
             "command-line-flag": "--skip_bids_validation",
-            "default-value": false,
             "description": "assume the input dataset is BIDS compliant and skip the validation",
             "id": "skip_bids_validation",
             "name": "skip_bids_validation",
@@ -447,7 +445,6 @@
         },
         {
             "command-line-flag": "--fs-no-reconall",
-            "default-value": false,
             "description": "disable FreeSurfer surface preprocessing.",
             "id": "no_run_reconall",
             "name": "no_run_reconall",
