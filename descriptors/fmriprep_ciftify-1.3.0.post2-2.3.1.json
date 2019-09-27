@@ -82,8 +82,8 @@
         {
             "command-line-flag": "--rerun-if-incomplete",
             "description": "Will delete and rerun ciftify workflows if incomplete outputs are found",
-            "id": "rerun_if_complete",
-            "name": "rerun_if_complete",
+            "id": "rerun_if_incomplete",
+            "name": "rerun_if_incomplete",
             "optional": true,
             "type": "Flag",
             "value-key": "[RERUN_IF_COMPLETE]"
@@ -414,7 +414,7 @@
             "read_from_derivatives": {
                 "type": "string"
             },
-            "rerun_if_complete": {
+            "rerun_if_incomplete": {
                 "type": "boolean"
             },
             "resample_to_T1w32k": {

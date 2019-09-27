@@ -8,5 +8,6 @@
 	"verbosity":"-vv",
 	"use_aroma":true,
 	"low_mem":true,
-	"ignore": ["fieldmaps","slicetiming"]
+	"ignore": ["fieldmaps","slicetiming"],
+	"output_space": ["T1w", "template", "fsaverage"]
 }

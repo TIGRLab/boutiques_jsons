@@ -18,7 +18,7 @@
         ]
     },
     "url": "https://github.com/BIDS-Apps/HCPPipelines",
-    "command-line": "run.py [BIDS_DIR] [OUTPUT_DIR] [ANALYSIS_LEVEL] [PARTICIPANT_LABEL] [VERSION] [N_CPUS] [STAGES] [ANAT_UNWARPDIR] [LICENSE_KEY]",
+    "command-line": "/run.py [BIDS_DIR] [OUTPUT_DIR] [ANALYSIS_LEVEL] [PARTICIPANT_LABEL] [VERSION] [N_CPUS] [STAGES] [ANAT_UNWARPDIR] [GD_COEFFS] [COREG] [LICENSE_KEY]",
     "inputs": [
         {
             "description": "the root folder of a BIDS valid dataset (sub-XXXXX folders should be found at the top level in this folder).",
@@ -87,6 +87,27 @@
 		],
 		"value-key": "[ANAT_UNWARPDIR]"
 	},
+	{
+		"command-line-flag": "--coreg",
+		"description": "Coregistration method to use.",
+		"id":"coreg",
+		"name":"coreg",
+		"optional":true,
+		"type":"String",
+		"value-choices": [
+			"MSMSulc","FS"
+		],
+		"value-key": "[COREG]"
+	},
+        {
+            "command-line-flag": "--gdcoeffs",
+            "description": "Gradients coefficients file",
+            "id": "gdcoeffs",
+            "name": "gdcoeffs",
+            "optional": true,
+            "type": "File",
+            "value-key": "[GD_COEFFS]"
+        },
         {
             "command-line-flag": "--license_key",
             "description": "Path to FreeSurfer license key file. Get it (for free) by registering at https://surfer.nmr.mgh.harvard.edu/registration.html",
@@ -151,6 +172,12 @@
                 "type": "boolean"
             },
 	    "anat_unwarpdir": {
+		    "type":"string"
+	    },
+	    "coreg":{
+		    "type":"string"
+	    },
+	    "gdcoeffs":{
 		    "type":"string"
 	    },
 	    "stages":{
