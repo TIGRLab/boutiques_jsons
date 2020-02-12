@@ -425,6 +425,16 @@
             "value-key": "[FS_LICENSE_FILE]"
         },
         {
+            "command-line-flag": "--fs-subjects-dir",
+            "description": "Path to existing FreeSurfer subjects directory to reuse",
+            "id": "fs_subjects_dir",
+            "name": "fs_subjects_dir",
+            "optional": true,
+            "type": "String",
+            "uses-absolute-path": true,
+            "value-key": "[FS_SUBJECTS_DIR]"
+        },
+        {
             "command-line-flag": "--no-submm-recon",
             "default-value": true,
             "description": "disable sub-millimeter (hires) reconstruction",
@@ -589,6 +599,9 @@
                 "type": "boolean"
             },
             "fs_license_file": {
+                "type": "string"
+            },
+            "fs_subjects_dir": {
                 "type": "string"
             },
             "no_submm_recon": {
