@@ -431,7 +431,6 @@
             "name": "fs_subjects_dir",
             "optional": true,
             "type": "String",
-            "uses-absolute-path": true,
             "value-key": "[FS_SUBJECTS_DIR]"
         },
         {
