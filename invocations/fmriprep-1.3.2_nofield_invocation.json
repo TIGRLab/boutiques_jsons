@@ -1,6 +1,7 @@
 {
 	"bids_dir":"/bids",
 	"output_dir":"/output",
+	"work_dir":"/work",
 	"analysis_level":"participant",
 	"fs_license_file":"/license/license.txt",
 	"nthreads":4,
