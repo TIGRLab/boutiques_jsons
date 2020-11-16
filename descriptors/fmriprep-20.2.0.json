@@ -113,6 +113,15 @@
           "value-key": "[ANAT_DERIVATIVES]"
         },
         {
+            "command-line-flag": "--bids-database-dir",
+            "description":"Path to an existing PyBIDS database folder, for faster indexing (especially useful for large datasets).",
+            "id": "bids_database_dir",
+            "name": "bids_database_dir",
+            "optional": true,
+            "type":"String",
+            "value-key": "[BIDS_DATABASE_DIR]"
+        },
+        {
             "command-line-flag": "--nprocs",
             "description": "maximum number of threads across all processes",
             "id": "nprocs",
@@ -386,6 +395,7 @@
             "description": "Possible choices: auto, skip, force. Determiner for T1-weighted skull stripping (‘force’ ensures skull stripping, ‘skip’ ignores skull stripping, and ‘auto’ applies brain extraction based on the outcome of a heuristic to check whether the brain is already masked).",
             "id": "skull_strip_t1w",
             "name": "skull_strip_t1w",
+            "optional": true,
             "value-choices": [
               "auto", "skip", "force"
             ],
