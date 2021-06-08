@@ -216,8 +216,7 @@
         {
             "command-line-flag": "--output-spaces",
             "default-value": [
-                "MNI152NLin2009cAsym",
-                "fsaverage5"
+                "MNI152NLin2009cAsym"
             ],
             "description": "Standard and non-standard spaces to resample anatomical and functional images to. Standard spaces may be specified by the form <SPACE>[:cohort-<label>][:res-<resolution>][...], where <SPACE> is a keyword designating a spatial reference, and may be followed by optional, colon-separated parameters. Non-standard spaces imply specific orientations and sampling grids. Important to note, the res-* modifier does not define the resolution used for the spatial normalization. To generate no ASL outputs, use this option without specifying any spatial references.",
             "id": "output_spaces",

@@ -4,11 +4,10 @@
 	"work_dir":"/work",
 	"analysis_level":"participant",
 	"fs_license_file":"/license/license.txt",
-	"nthreads":4,
+	"nprocs":4,
 	"omp_nthreads":2,
 	"use_syn_sdc":true,
 	"verbosity":"-vv",
-	"low_mem":true,
-	"output_space": ["T1w", "MNI152NLin2009cAsym"]
+	"output_spaces": ["T1w", "MNI152NLin2009cAsym"]
 
 }
