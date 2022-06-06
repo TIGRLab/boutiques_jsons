@@ -1,0 +1,205 @@
+{
+    "author": "Human Connectome",
+    "name" : "HCPPipelines (BIDS app)",
+    "tool-version" : "4.1.3",
+    "description" : "The HCP Pipelines product is a set of tools (primarily, but not exclusively, shell scripts) for processing MRI images for the Human Connectome Project. Among other things, these tools implement the Minimal Preprocessing Pipeline (MPP) described in Glasser et al. 2013.",
+    "container-image": {
+        "type": "singularity",
+	"image":"bids/hcppipelines:4.1.3"
+    },
+    "schema-version" : "0.5",
+    "tags": {
+        "application-type": [
+            "bids"
+        ],
+        "domain": [
+            "neuroinformatics",
+            "fmri"
+        ]
+    },
+    "url": "https://github.com/BIDS-Apps/HCPPipelines",
+    "command-line": "/run.py [BIDS_DIR] [OUTPUT_DIR] [ANALYSIS_LEVEL] [PARTICIPANT_LABEL] [VERSION] [N_CPUS] [STAGES] [ANAT_UNWARPDIR] [GD_COEFFS] [COREG] [LICENSE_KEY]",
+    "inputs": [
+        {
+            "description": "the root folder of a BIDS valid dataset (sub-XXXXX folders should be found at the top level in this folder).",
+            "id": "bids_dir",
+            "name": "bids_dir",
+            "optional": false,
+            "type": "String",
+            "value-key": "[BIDS_DIR]"
+        },
+        {
+            "description": "the output path for the outcomes of preprocessing and visual reports",
+            "id": "output_dir",
+            "name": "output_dir",
+            "optional": false,
+            "type": "String",
+            "value-key": "[OUTPUT_DIR]"
+        },
+        {
+            "description": "processing stage to be run, only \"participant\" in the case of FMRIPREP (see BIDS-Apps specification).",
+            "id": "analysis_level",
+            "name": "analysis_level",
+            "optional": false,
+            "type": "String",
+            "value-choices": [
+                "participant"
+            ],
+            "value-key": "[ANALYSIS_LEVEL]"
+        },
+        {
+            "command-line-flag": "--version",
+            "description": "show program's version number and exit",
+            "id": "version",
+            "name": "version",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[VERSION]"
+        },
+        {
+            "command-line-flag": "--participant_label",
+            "description": "a space delimited list of participant identifiers or a single identifier (the sub- prefix can be removed)",
+            "id": "participant_label",
+            "list": true,
+            "name": "participant_label",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PARTICIPANT_LABEL]"
+        },
+        {
+            "command-line-flag": "--n_cpus",
+            "description": "maximum number of threads across all processes",
+            "id": "n_cpus",
+            "name": "n_cpus",
+            "optional": true,
+            "type": "Number",
+            "value-key": "[N_CPUS]"
+        },
+	{
+		"command-line-flag": "--anat_unwarpdir",
+		"description": "Direction to unwarp 3D anatomicals. Required if distortion correction and PreFreeSurfer are specified.",
+		"id":"anat_unwarpdir",
+		"name":"anat_unwarpdir",
+		"optional":true,
+		"type":"String",
+		"value-choices": [
+			"x","y","z","-x","-y","-z"
+		],
+		"value-key": "[ANAT_UNWARPDIR]"
+	},
+	{
+		"command-line-flag": "--coreg",
+		"description": "Coregistration method to use.",
+		"id":"coreg",
+		"name":"coreg",
+		"optional":true,
+		"type":"String",
+		"value-choices": [
+			"MSMSulc","FS"
+		],
+		"value-key": "[COREG]"
+	},
+        {
+            "command-line-flag": "--gdcoeffs",
+            "description": "Gradients coefficients file",
+            "id": "gdcoeffs",
+            "name": "gdcoeffs",
+            "optional": true,
+            "type": "File",
+            "value-key": "[GD_COEFFS]"
+        },
+        {
+            "command-line-flag": "--license_key",
+            "description": "Path to FreeSurfer license key file. Get it (for free) by registering at https://surfer.nmr.mgh.harvard.edu/registration.html",
+            "id": "license_key",
+            "name": "license_key",
+            "optional": true,
+            "type": "File",
+            "uses-absolute-path": true,
+            "value-key": "[LICENSE_KEY]"
+        },
+	{
+		"command-line-flag": "--stages",
+		"description":"Which stages of HCPPipelines to run",
+		"list":true,
+		"id": "stages",
+		"name": "stages",
+		"optional": true,
+		"type": "String",
+		"value-choices": [
+			"PreFreeSurfer",
+			"FreeSurfer",
+			"PostFreeSurfer",
+			"fMRIVolume",
+			"fMRISurface",
+			"DiffusionPreprocessing"
+		],
+		"value-key":"[STAGES]"
+
+	}
+
+    ],
+    "invocation-schema": {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "additionalProperties": false,
+        "dependencies": {},
+        "description": "Invocation schema for bids app - fmriprep.",
+        "properties": {
+            "analysis_level": {
+                "enum": [
+                    "participant"
+                ]
+            },
+            "bids_dir": {
+                "type": "string"
+            },
+            "license_key": {
+                "type": "string"
+            },
+            "n_cpus": {
+                "type": "number"
+            },
+            "output_dir": {
+                "type": "string"
+            },
+            "participant_label": {
+                "items": {
+                    "type": "string"
+                },
+                "type": "array"
+            },
+            "version": {
+                "type": "boolean"
+            },
+	    "anat_unwarpdir": {
+		    "type":"string"
+	    },
+	    "coreg":{
+		    "type":"string"
+	    },
+	    "gdcoeffs":{
+		    "type":"string"
+	    },
+	    "stages":{
+		    "items":{
+			    "enum": [
+				"PreFreeSurfer",
+				"FreeSurfer",
+				"PostFreeSurfer",
+				"fMRIVolume",
+				"fMRISurface",
+				"DiffusionPreprocessing"
+			    ]
+		    },
+		    "type":"array"
+	    }
+        },
+        "required": [
+            "bids_dir",
+            "output_dir",
+            "analysis_level"
+        ],
+        "title": "BIDS App - hcppipelines.invocationSchema",
+        "type": "object"
+    }
+}
