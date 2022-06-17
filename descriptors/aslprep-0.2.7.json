@@ -1,0 +1,693 @@
+{
+    "author": "Satterthwaite lab",
+    "name" : "aslprep (BIDS app)",
+    "tool-version" : "0.2.7",
+    "description" : "ASLPrep is a Arterial Spin Labeling data preprocessing and Cerebral Blood FLow (CBF) computation pipeline that is designed to provide an easily accessible, state-of-the-art interface that is robust to variations in scan acquisition protocols and that requires minimal user input, while providing easily interpretable and comprehensive error and output reporting. https://aslprep.readthedocs.io/",
+    "container-image": {
+        "type": "singularity",
+        "image": "Satterthwaitelab/aslprep:0.2.7"
+    },
+    "schema-version" : "0.5",
+    "tags": {
+        "application-type": [
+            "bids"
+        ],
+        "domain": [
+            "neuroinformatics",
+            "asl"
+        ]
+    },
+    "url": "https://aslprep.readthedocs.io/en/latest/",
+    "command-line": "aslprep [BIDS_DIR] [OUTPUT_DIR] [ANALYSIS_LEVEL] [VERSION] [SKIP_BIDS_VALIDATION] [PARTICIPANT_LABEL] [ECHO_IDX] [BIDS_FILTER_FILE] [ANAT_DERIVATIVES] [NPROCS] [OMP_NTHREADS] [MEM_MB] [LOW_MEM] [USE_PLUGIN] [ANAT_ONLY] [BOILERPLATE_ONLY] [MD_ONLY_BOILERPLATE] [VERBOSITY] [IGNORE] [LONGITUDINAL] [OUTPUT_SPACES] [ASL2T1W_INIT] [ASL2T1W_DOF] [FORCE_BBR] [FORCE_NO_BBR] [M0_SCALE] [RANDOM_SEED] [DUMMY_VOLS] [SMOOTH_KERNEL] [SCORESCRUB] [BASIL] [SKULL_STRIP_TEMPLATE] [SKULL_STRIP_FIXED_SEED] [SKULL_STRIP_T1W] [FMAP_BSPLINE] [FMAP_NO_DEMEAN] [USE_SYN_SDC] [FORCE_SYN] [FS_LICENSE_FILE] [WORK_DIR] [CLEAN_WORKDIR] [RESOURCE_MONITOR] [REPORTS_ONLY] [RUN_UUID] [WRITE_GRAPH] [STOP_ON_FIRST_CRASH] [NOTRACK] [SLOPPY]",
+    "inputs": [
+        {
+            "description": "the root folder of a BIDS valid dataset (sub-XXXXX folders should be found at the top level in this folder).",
+            "id": "bids_dir",
+            "name": "bids_dir",
+            "optional": false,
+            "type": "String",
+            "value-key": "[BIDS_DIR]"
+        },
+        {
+            "description": "the output path for the outcomes of preprocessing and visual reports",
+            "id": "output_dir",
+            "name": "output_dir",
+            "optional": false,
+            "type": "String",
+            "value-key": "[OUTPUT_DIR]"
+        },
+        {
+            "description": "processing stage to be run, only \"participant\" in the case of ASLPREP (see BIDS-Apps specification).",
+            "id": "analysis_level",
+            "name": "analysis_level",
+            "optional": false,
+            "type": "String",
+            "value-choices": [
+                "participant"
+            ],
+            "value-key": "[ANALYSIS_LEVEL]"
+        },
+        {
+            "command-line-flag": "--version",
+            "description": "show program's version number and exit",
+            "id": "version",
+            "name": "version",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[VERSION]"
+        },
+        {
+            "command-line-flag": "--skip_bids_validation",
+            "description": "assume the input dataset is BIDS compliant and skip the validation",
+            "id": "skip_bids_validation",
+            "name": "skip_bids_validation",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[SKIP_BIDS_VALIDATION]"
+        },
+        {
+            "command-line-flag": "--participant_label",
+            "description": "a space delimited list of participant identifiers or a single identifier (the sub- prefix can be removed)",
+            "id": "participant_label",
+            "list": true,
+            "name": "participant_label",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PARTICIPANT_LABEL]"
+        },
+        {
+            "command-line-flag": "--echo-idx",
+            "description": "select a specific echo to be processed in a multiecho series",
+            "id": "echo_idx",
+            "name": "echo_idx",
+            "optional": true,
+            "type": "Number",
+            "value-key": "[ECHO_IDX]"
+        },
+        {
+            "command-line-flag": "--bids-filter-file",
+            "description": "a JSON file describing custom BIDS input filters using PyBIDS. For further details, please check out https://aslprep.readthedocs.io/en/0.2.7/faq.html#how-do-I-select-only-certain-files-to-be-input-to-ASLPrep",
+            "id": "bids_filter_file",
+            "name":"bids_filter_file",
+            "optional":true,
+            "type": "File",
+            "uses-absolute-path": true,
+            "value-key": "[BIDS_FILTER_FILE]"
+        },
+        {
+          "command-line-flag": "--anat-derivatives",
+          "description": "Reuse the anatomical derivatives from another ASLPrep run or calculated with an alternative processing tool (NOT RECOMMENDED).",
+          "id": "anat_derivatives",
+          "name": "anat_derivatives",
+          "optional": true,
+          "type":"String",
+          "value-key": "[ANAT_DERIVATIVES]"
+        },
+        {
+            "command-line-flag": "--nprocs",
+            "description": "maximum number of threads across all processes",
+            "id": "nprocs",
+            "name": "nprocs",
+            "optional": true,
+            "type": "Number",
+            "value-key": "[NPROCS]"
+        },
+        {
+            "command-line-flag": "--omp-nthreads",
+            "description": "maximum number of threads per-process",
+            "id": "omp_nthreads",
+            "name": "omp_nthreads",
+            "optional": true,
+            "type": "Number",
+            "value-key": "[OMP_NTHREADS]"
+        },
+        {
+            "command-line-flag": "--mem_mb",
+            "description": "upper bound memory limit for ASLPREP processes",
+            "id": "mem_mb",
+            "name": "mem_mb",
+            "optional": true,
+            "type": "Number",
+            "value-key": "[MEM_MB]"
+        },
+        {
+            "command-line-flag": "--low-mem",
+            "description": "attempt to reduce memory usage (will increase disk usage in working directory)",
+            "id": "low_mem",
+            "name": "low_mem",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[LOW_MEM]"
+        },
+        {
+            "command-line-flag": "--use-plugin",
+            "description": "nipype plugin configuration file",
+            "id": "use_plugin",
+            "name": "use_plugin",
+            "optional": true,
+            "type": "String",
+            "value-key": "[USE_PLUGIN]"
+        },
+        {
+            "command-line-flag": "--anat-only",
+            "description": "run anatomical workflows only",
+            "id": "anat_only",
+            "name": "anat_only",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[ANAT_ONLY]"
+        },
+        {
+            "command-line-flag": "--boilerplate_only",
+            "description": "generate boilerplate only",
+            "id": "boilerplate_only",
+            "name": "boilerplate_only",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[BOILERPLATE_ONLY]"
+        },
+        {
+            "command-line-flag": "--md-only-boilerplate",
+            "description": "skip generation of HTML and LaTeX formatted citation with pandoc",
+            "id": "md_only_boilerplate",
+            "name": "md_only_boilerplate",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[MD_ONLY_BOILERPLATE]"
+        },
+        {
+            "command-line-flag": "",
+            "description": "increases log verbosity for each occurence, debug level is -vvv",
+            "id": "verbosity",
+            "name": "verbosity",
+            "optional": true,
+            "type": "String",
+            "value-choices": [
+                "-v",
+                "-vv",
+                "-vvv"
+            ],
+            "value-key": "[VERBOSITY]"
+        },
+        {
+            "command-line-flag": "--ignore",
+            "description": "ignore selected aspects of the input dataset to disable corresponding parts of the workflow (a space delimited list)",
+            "id": "ignore",
+            "list": true,
+            "name": "ignore",
+            "optional": true,
+            "type": "String",
+            "value-choices": [
+                "fieldmaps",
+                "slicetiming",
+                "sbref"
+            ],
+            "value-key": "[IGNORE]"
+        },
+        {
+            "command-line-flag": "--longitudinal",
+            "description": "treat dataset as longitudinal - may increase runtime",
+            "id": "longitudinal",
+            "name": "longitudinal",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[LONGITUDINAL]"
+        },
+        {
+            "command-line-flag": "--output-spaces",
+            "default-value": [
+                "MNI152NLin2009cAsym"
+            ],
+            "description": "Standard and non-standard spaces to resample anatomical and functional images to. Standard spaces may be specified by the form <SPACE>[:cohort-<label>][:res-<resolution>][...], where <SPACE> is a keyword designating a spatial reference, and may be followed by optional, colon-separated parameters. Non-standard spaces imply specific orientations and sampling grids. Important to note, the res-* modifier does not define the resolution used for the spatial normalization. To generate no ASL outputs, use this option without specifying any spatial references.",
+            "id": "output_spaces",
+            "list": true,
+            "name": "output_spaces",
+            "optional": true,
+            "type": "String",
+            "value-key": "[OUTPUT_SPACES]"
+        },
+        {
+            "command-line-flag": "--asl2t1w-init",
+            "default-value": "register",
+            "description": "Possible choices: register, header. Either “register” (the default) to initialize volumes at center or “header” to use the header information when coregistering ASL to T1w images.",
+            "id": "asl2t1w_init",
+            "name": "asl2t1w_init",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ASL2T1W_INIT]"
+        },
+        {
+            "command-line-flag": "--asl2t1w-dof",
+            "default-value": 6,
+            "description": "Degrees of freedom when registering ASL to T1w images. 6 degrees (rotation and translation) are used by default.",
+            "id": "asl2t1w_dof",
+            "name": "asl2t1w_dof",
+            "optional": true,
+            "type": "Number",
+            "value-choices": [
+                6,
+                9,
+                12
+            ],
+            "value-key": "[ASL2T1W_DOF]"
+        },
+        {
+            "command-line-flag": "--force-bbr",
+            "description": "Always use boundary-based registration (no goodness-of-fit checks)",
+            "id": "force_bbr",
+            "name": "force_bbr",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[FORCE_BBR]"
+        },
+        {
+            "command-line-flag": "--force-no-bbr",
+            "description": "Do not use boundary-based registration (no goodness-of-fit checks)",
+            "id": "force_no_bbr",
+            "name": "force_no_bbr",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[FORCE_NO_BBR]"
+        },
+        {
+            "command-line-flag": "--m0_scale",
+            "description": "Relative scale between asl and M0.",
+            "id": "m0_scale",
+            "name": "m0_scale",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[M0_SCALE]"
+        },
+        {
+            "command-line-flag": "--random-seed",
+            "description": "Initialize the random seed for the workflow",
+            "id": "random_seed",
+            "name": "random_seed",
+            "optional": true,
+            "type": "Number",
+            "value-key": "[RANDOM_SEED]"
+        },
+        {
+            "command-line-flag": "--dummy-vols",
+            "description": "Number of initial volumes to ignore",
+            "id": "dummy_vols",
+            "name": "dummy_vols",
+            "optional": true,
+            "type": "Number",
+            "value-key": "[DUMMY_VOLS]"
+        },
+        {
+            "command-line-flag": "--smooth_kernel",
+            "description": "Smoothing kernel for the M0 image(s)",
+            "id": "smooth_kernel",
+            "name": "smooth_kernel",
+            "optional": true,
+            "type": "Number",
+            "value-key": "[SMOOTH_KERNEL]"
+        },
+        {
+            "command-line-flag": "--scorescrub",
+            "description": "Sudipto algoritms for denoising CBF",
+            "id": "scorescrub",
+            "name": "scorescrub",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[SCORESCRUB]"
+        },
+        {
+            "command-line-flag": "--basil",
+            "description": "FSL’s CBF computation with spatial regularization and partial volume correction",
+            "id": "basil",
+            "name": "basil",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[BASIL]"
+        },
+        {
+            "command-line-flag": "--skull-strip-template",
+            "description": "select a template for skull-stripping with antsBrainExtraction",
+            "id": "skull_strip_template",
+            "name": "skull_strip_template",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SKULL_STRIP_TEMPLATE]"
+        },
+        {
+            "command-line-flag": "--skull-strip-fixed-seed",
+            "description": "do not use a random seed for skull-stripping - will ensure run-to-run replicability when used with –omp-nthreads 1 and matching –random-seed <int>",
+            "id": "skull_strip_fixed_seed",
+            "name": "skull_strip_fixed_seed",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[SKULL_STRIP_FIXED_SEED]"
+        },
+        {
+            "command-line-flag": "--skull-strip-t1w",
+            "description": "determiner for T1-weighted skull stripping (‘force’ ensures skull stripping, ‘skip’ ignores skull stripping, and ‘auto’ applies brain extraction based on the outcome of a heuristic to check whether the brain is already masked).",
+            "id": "skull_strip_t1w",
+            "name": "skull_strip_t1w",
+            "optional": true,
+            "value-choices": [
+              "auto", "skip", "force"
+            ],
+            "type": "String",
+            "value-key": "[SKULL_STRIP_T1W]"
+        },
+        {
+            "command-line-flag": "--fmap-bspline",
+            "description": "fit a B-Spline field using least-squares (experimental)",
+            "id": "fmap_bspline",
+            "name": "fmap_bspline",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[FMAP_BSPLINE]"
+        },
+        {
+            "command-line-flag": "--fmap-no-demean",
+            "description": "do not remove median (within mask) from fieldmap",
+            "id": "fmap_no_demean",
+            "name": "fmap_no_demean",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[FMAP_NO_DEMEAN]"
+        },
+        {
+            "command-line-flag": "--use-syn-sdc",
+            "description": "EXPERIMENTAL: Use fieldmap-free distortion correction",
+            "id": "use_syn_sdc",
+            "name": "use_syn_sdc",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[USE_SYN_SDC]"
+        },
+        {
+            "command-line-flag": "--force-syn",
+            "description": "EXPERIMENTAL/TEMPORARY: Use SyN correction in addition to fieldmap correction, if available",
+            "id": "force_syn",
+            "name": "force_syn",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[FORCE_SYN]"
+        },
+        {
+            "command-line-flag": "--fs-license-file",
+            "description": "Path to FreeSurfer license key file. Get it (for free) by registering at https://surfer.nmr.mgh.harvard.edu/registration.html",
+            "id": "fs_license_file",
+            "name": "fs_license_file",
+            "optional": true,
+            "type": "File",
+            "uses-absolute-path": true,
+            "value-key": "[FS_LICENSE_FILE]"
+        },
+        {
+            "command-line-flag": "-w",
+            "description": "path where intermediate results should be stored",
+            "id": "work_dir",
+            "name": "work_dir",
+            "optional": true,
+            "type": "String",
+            "value-key": "[WORK_DIR]"
+        },
+        {
+            "command-line-flag": "--clean-workdir",
+            "description": "Clears working directory of contents. Use of this flag is notrecommended when running concurrent processes of aslprep.",
+            "id": "clean_workdir",
+            "name": "clean_workdir",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[CLEAN_WORKDIR]"
+        },
+        {
+            "command-line-flag": "--resource-monitor",
+            "description": "enable Nipype's resource monitoring to keep track of memory and CPU usage",
+            "id": "resource_monitor",
+            "name": "resource_monitor",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[RESOURCE_MONITOR]"
+        },
+        {
+            "command-line-flag": "--reports-only",
+            "description": "only generate reports, don't run workflows. This will only rerun report aggregation, not reportlet generation for specific nodes.",
+            "id": "reports_only",
+            "name": "reports_only",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[REPORTS_ONLY]"
+        },
+        {
+            "command-line-flag": "--run-uuid",
+            "description": "Specify UUID of previous run, to include error logs in report. No effect without --reports-only.",
+            "id": "run_uuid",
+            "name": "run_uuid",
+            "optional": true,
+            "type": "String",
+            "value-key": "[RUN_UUID]"
+        },
+        {
+            "command-line-flag": "--write-graph",
+            "description": "Write workflow graph.",
+            "id": "write_graph",
+            "name": "write_graph",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[WRITE_GRAPH]"
+        },
+        {
+            "command-line-flag": "--stop-on-first-crash",
+            "description": "Force stopping on first crash, even if a work directory was specified.",
+            "id": "stop_on_first_crash",
+            "name": "stop_on_first_crash",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[STOP_ON_FIRST_CRASH]"
+        },
+        {
+            "command-line-flag": "--notrack",
+            "description": "Opt-out of sending tracking information of this run to the aslprep developers. This information helps to improve aslprep and provides an indicator of real world usage crucial for obtaining funding.",
+            "id": "notrack",
+            "name": "notrack",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[NOTRACK]"
+        },
+        {
+            "command-line-flag": "--sloppy",
+            "description": "Use low-quality tools for speed - TESTING ONLY",
+            "id": "sloppy",
+            "name": "sloppy",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[SLOPPY]"
+        }
+    ],
+    "invocation-schema": {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "additionalProperties": false,
+        "dependencies": {},
+        "description": "Invocation schema for bids app - aslprep.",
+        "properties": {
+
+            "bids_dir":{
+              "type": "string"
+            },
+            "output_dir": {
+                "type": "string"
+            },
+            "analysis_level": {
+                "enum": [
+                    "participant"
+                ]
+            },
+            "version": {
+                "type": "boolean"
+            },
+            "skip_bids_validation": {
+                "type": "boolean"
+            },
+            "participant_label": {
+                "items": {
+                    "type": "string"
+                },
+                "type": "array"
+            },
+            "echo_idx": {
+                "type": "number"
+            },
+            "bids_filter_file":{
+                "type": "string"
+            },
+            "anat_derivatives":{
+                "type": "string"
+            },
+            "nprocs": {
+                "type": "number"
+            },
+            "omp_nthreads": {
+                "type": "number"
+            },
+            "mem_mb": {
+                "type": "number"
+            },
+            "low_mem": {
+                "type": "boolean"
+            },
+            "use_plugin": {
+                "type": "string"
+            },
+            "anat_only": {
+                "type": "boolean"
+            },
+            "boilerplate_only": {
+                "type": "boolean"
+            },
+            "md_only_boilerplate":{
+              "type": "boolean"
+            },
+            "verbosity": {
+                "enum": [
+                    "-v",
+                    "-vv",
+                    "-vvv"
+                ]
+            },
+            "ignore": {
+                "items": {
+                    "enum": [
+                        "fieldmaps",
+                        "slicetiming",
+                        "sbref"
+                    ],
+                  "type":"string"
+                },
+                "type": "array"
+            },
+            "longitudinal": {
+                "type": "boolean"
+            },
+            "output_spaces": {
+                "type": "array"
+            },
+            "asl2t1w_init":{
+                "enum":[
+                  "register", "header"
+                ]
+            },
+            "asl2t1w_dof": {
+                "enum": [
+                    6,
+                    9,
+                    12
+                ]
+            },
+            "force_bbr":{
+                "type": "boolean"
+            },
+            "force_no_bbr":{
+                "type": "boolean"
+            },
+            "m0_scale":{
+                "type": "number"
+            },
+            "random_seed":{
+                "type": "number"
+            },
+            "dummy_vols": {
+                "type": "number"
+            },
+            "smooth_kernel": {
+                "type": "number"
+            },
+            "scorescrub": {
+                "type": "boolean"
+            },
+            "basil": {
+                "type": "boolean"
+            },
+            "skull_strip_template": {
+                "type": "string"
+            },
+            "skull_strip_fixed_seed": {
+                "type": "boolean"
+            },
+            "skull_strip_t1w":{
+                "enum":[
+                  "auto", "skip", "force"
+                ]
+            },
+            "fmap_bspline": {
+                "type": "boolean"
+            },
+            "fmap_no_demean": {
+                "type": "boolean"
+            },
+            "use_syn_sdc": {
+                "type": "boolean"
+            },
+            "force_syn": {
+                "type": "boolean"
+            },
+            "fs_license_file": {
+                "type": "string"
+            },
+            "work_dir": {
+                "type": "string"
+            },
+            "clean_workdir":{
+                "type": "string"
+            },
+            "resource_monitor": {
+                "type": "boolean"
+            },
+            "reports_only": {
+                "type": "boolean"
+            },
+            "run_uuid": {
+                "type": "string"
+            },
+            "write_graph": {
+                "type": "boolean"
+            },
+            "stop_on_first_crash": {
+                "type": "boolean"
+            },
+            "notrack": {
+                "type": "boolean"
+            },
+            "sloppy": {
+                "type": "boolean"
+            }
+        },
+        "required": [
+            "bids_dir",
+            "output_dir",
+            "analysis_level"
+        ],
+        "title": "BIDS App - aslprep.invocationSchema",
+        "type": "object"
+    },
+    "output-files": [
+        {
+            "description": "This is the directory where the overall outputs are to be stored.",
+            "id": "output_directory",
+            "name": "Output Directory",
+            "optional": false,
+            "path-template": "[OUTPUT_DIR]/aslprep/sub-[PARTICIPANT_LABEL]"
+        },
+	{
+		"description": "Check for existence of the aslprep html report file",
+		"id": "html_report",
+		"name": "ASLPREP HTML report file",
+		"optional": false,
+		"path-template": "[OUTPUT_DIR]/aslprep/sub-[PARTICIPANT_LABEL].html"
+	},
+	{
+		"description": "Structural preprocessed outputs of ASLPREP",
+		"id": "struct_out",
+		"name": "ASLPREP structural preprocessed",
+		"optional":false,
+		"path-template":"[OUTPUT_DIR]/aslprep/sub-[PARTICIPANT_LABEL]/anat/*preproc_T1w.nii.gz"
+	}
+
+    ]
+}
