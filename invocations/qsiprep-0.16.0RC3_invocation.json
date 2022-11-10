@@ -1,0 +1,18 @@
+{
+	"bids_dir": "/bids",
+	"output_dir": "/output",
+	"work_dir": "/work",
+	"analysis_level": "participant",
+	"fs_license_file": "/license/license.txt",
+	"n_cpus": 4,
+	"omp_nthreads": 2,
+	"verbosity": "-vv",
+  "freesurfer_input": "/output/freesurfer",
+  "denoise_method": "dwidenoise",
+  "unringing_method": "mrdegibbs",
+  "separate_all_dwis": true,
+  "hmc_model": "eddy",
+  "output_resolution": 1.7,
+  "notrack": true,
+  "skip_bids_validation": true
+}
